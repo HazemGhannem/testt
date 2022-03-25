@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Chef index{% endblock %}
+
+{% block body %}
+    <h1>Chef index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Specialitee</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for chef in chefs %}
+            <tr>
+                <td>{{ chef.id }}</td>
+                <td>{{ chef.nom }}</td>
+                <td>{{ chef.specialitee }}</td>
+                <td>
+                    <a href="{{ path('chef_show', {'id': chef.id}) }}">show</a>
+                    <a href="{{ path('chef_edit', {'id': chef.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('chef_new') }}">Create new</a>
+{% endblock %}
